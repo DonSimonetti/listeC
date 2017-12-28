@@ -1,7 +1,10 @@
-#include <iostream>
+#include <stdlib.h>
+#include "pList.h"
 
 int main() 
 {
-    std::cout << "Hello, World!" << std::endl;
+    struct pList * lista1;
+    pList_generate(&lista1,9);
+    pList_visit(lista1);
     return 0;
 }
