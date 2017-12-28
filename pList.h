@@ -39,7 +39,7 @@ void pList_visit(struct pList * list)
 {
     for(;list!= NULL;list=list->next)
     {
-        printf("\n%.1f",list->value);
+        printf("\n%.3f",list->value);
     }
 }
 
@@ -47,10 +47,30 @@ void pList_preInsert(struct pList ** list, float val)
 {
     //creo anello
     struct pList * anello=(struct pList *)malloc(sizeof(struct pList));
+    if(anello==NULL)
+    {
+        printf("ERRORE: memoria insufficiente");
+        return;
+    }
     anello->value=val;
     anello->next=*list;
     //collego anello
     *list=anello;
+}
+
+void pList_sufInsert(struct pList ** list, float val)
+{
+    //scorro la lista fino in fondo
+    while(*list!=NULL)
+        list=&(*list)->next;
+    pList_preInsert(list,val);
+}
+
+void pList_ordInsert(struct pList ** list, float val)
+{
+    while(*list!=NULL && (*list)->value<val)
+        list=&(*list)->next;
+    pList_preInsert(list,val);
 }
 
 #endif //LISTEC_PLIST_H
