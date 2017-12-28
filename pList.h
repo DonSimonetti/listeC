@@ -8,6 +8,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <float.h>
+#include "scutils.h"
 
 void pList_preInsert(struct pList ** list, float val);
 
@@ -40,6 +42,17 @@ void pList_visit(struct pList * list)
     {
         printf("\n%.3f",list->value);
     }
+}
+
+bool pList_search(struct pList * list, float val)
+{
+    bool found=false;
+    for(;list!=NULL && !found;list=list->next)
+    {
+        if(isEqual(val,list->value))
+            found=true;
+    }
+    return found;
 }
 
 void pList_preInsert(struct pList ** list, float val)

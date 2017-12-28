@@ -13,4 +13,9 @@ struct seqList
     int size;
 };
 
+void seqList_init(struct seqList * list,int size)
+{
+
+}
+
 #endif //LISTEC_SEQLIST_H
