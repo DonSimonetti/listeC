@@ -85,4 +85,11 @@ bool seqList_search(struct seqList * list, float val)
     return found;
 }
 
+bool seqList_preRemove(struct seqList * list, float * val)
+{
+    if(list->head==list->tail)//lista vuota
+        return false;
+    list->head=(list->head+1)%list->size;
+}
+
 #endif //LISTEC_SEQLIST_H
