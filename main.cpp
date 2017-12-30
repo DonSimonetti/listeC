@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "pList.h"
 #include "seqList.h"
+#include "sort.h"
 
 int main() 
 {
