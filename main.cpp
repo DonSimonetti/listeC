@@ -29,5 +29,6 @@ int main()
     printf("\nvettore ordinato:");
     selectionSort(v,n);
     printArrayf(v,n);
+
     return 0;
 }
