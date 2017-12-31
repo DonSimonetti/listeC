@@ -27,21 +27,18 @@ void selectionSort(float * v, int n)//Si trova il massimo e si fa lo swap
 
 void bubbleSort(float * v, int n)//confronto ogni elemento col suo successivo, se è più grande faccio lo swap
 {
-    bool swap_found=false;
-    int i,j=0;
-    do
+    if(n==1)
+        return;
+    int i;
+    for(i=0;i<n-1;i++)
     {
-        for(i=0;i<n-j-1;i++)
+        if(v[i]>v[i+1])
         {
-            if(v[i]>v[i+1])
-            {
-                swapf(&(v[i]), &(v[i + 1]));
-                swap_found = true;
-            }
+            swapf(&(v[i]), &(v[i + 1]));
+            swap_found = true;
         }
-        j++;
     }
-    while (!swap_found);
+    bubbleSort(v,n-1);
 }
 
 bool merge();
