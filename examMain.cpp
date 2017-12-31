@@ -11,6 +11,7 @@ int main()
 {
     printf("Bisogna creare una lista: scegli un opzione digitando il numero seguito da INVIO:\n");
     printf("1) La lista verra' generata automaticamente a caso\n2) La lista verra' creata manualmente\n");
+
     short opzione;
     do {
         scanf("%d", &opzione);
@@ -18,8 +19,10 @@ int main()
             printf("ERRORE: L'opzione %d non e' valida. Digitare 1 o 2\n",opzione);
     }
     while (!(opzione==1 || opzione==2));
+
     printf("\nHai selezionato l'opzione %d",opzione);
     printf("\nSpecificare ora la grandezza della lista");
+
     int size;
     do{
         printf("\n");
@@ -27,7 +30,9 @@ int main()
         if(size<=0)
             printf("\nERRORE: La grandezza della lista non e' valida. Digitare un numero strettamente maggiore di 0");
     }while(size<=0);
+
     printf("\nLa grandezza della lista sara' %d",size);
+
     switch (opzione)
     {
         case 1:{
@@ -39,6 +44,7 @@ int main()
             break;
         }
     }
+
     printf("\nOra verra' applicato il seguente algoritmo alla lista: "NOMEALGORITMO);
     return 0;
 }

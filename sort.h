@@ -21,6 +21,7 @@ void selectionSort(float * v, int n)//Si trova il massimo e si fa lo swap
         }
         //faccio swap
         swapf(&(v[iMax]), &(v[n - 1]));
+
         selectionSort(v,n-1);
     }
 }
@@ -40,12 +41,32 @@ void bubbleSort(float * v, int n)//confronto ogni elemento col suo successivo, s
     }
     bubbleSort(v,n-1);
 }
+//da qui in poi uso valori int per semplicità
+void merge(int * v, int n1, int n2, int * tmp);
 
-bool merge();
+void _mergeSort(int * v, int n, int * tmp)
+{
+    if(n>2)
+    {
+        _mergeSort(v,n/2,tmp);//semivettore sinistro
+        _mergeSort(&(v[n/2]),n/2,tmp);//semivettore destro
+        merge(v,n,n/2,tmp);
+    }
+    else if(n==2)
+        if(v[0]>v[1])
+            swapi(&(v[0]),&(v[1]));
+}
 
-bool _mergeSort();
-
-bool mergeSort();
+bool mergeSort(int * v, int n)
+{
+    int * tmp;
+    tmp=(int *)malloc(n/2* sizeof(int));
+    if(tmp==NULL)
+        return false;
+    _mergeSort(v,n,tmp);
+    free(tmp);
+    return true;
+}
 
 bool quickSort();
 
