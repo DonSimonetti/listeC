@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <math.h>
+#include <float.h>
 
 bool isEqual(float a, float b)
 {
@@ -36,6 +37,18 @@ bool generateRandomVectorf(float * v, int n)
     for(i=0;i<n;i++)
     {
         v[i]=(float)(rand()%100);
+    }
+    return true;
+}
+
+bool generateRandomVectori(int * v, int n)
+{
+    if(v==NULL)
+        return false;
+    int i;
+    for(i=0;i<n;i++)
+    {
+        v[i]=(rand()%100);
     }
     return true;
 }

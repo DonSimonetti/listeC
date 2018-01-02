@@ -23,6 +23,7 @@ int main()
     float * v;
     int n=10;
     v=(float*)malloc(n* sizeof(float));
+    printf("\n%p -> v\n",v);
     generateRandomVectorf(v,n);
     printArrayf(v,n);
 

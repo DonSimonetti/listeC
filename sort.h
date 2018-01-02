@@ -31,6 +31,7 @@ void bubbleSort(float * v, int n)//confronto ogni elemento col suo successivo, s
     if(n==1)
         return;
     int i;
+    bool swap_found;
     for(i=0;i<n-1;i++)
     {
         if(v[i]>v[i+1])
@@ -42,7 +43,19 @@ void bubbleSort(float * v, int n)//confronto ogni elemento col suo successivo, s
     bubbleSort(v,n-1);
 }
 //da qui in poi uso valori int per semplicità
-void merge(int * v, int n1, int n2, int * tmp);
+void merge(int * v, int n, int n1, int * tmp)
+{
+    int l,r;
+    for(l=0;l<n;l++)
+        tmp[l]=v[l];
+    l=0;
+    r=0;
+    do
+    {
+
+    }
+    while(l<r);
+}
 
 void _mergeSort(int * v, int n, int * tmp)
 {
