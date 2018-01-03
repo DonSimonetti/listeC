@@ -30,6 +30,6 @@ int main()
     printf("\nvettore ordinato:");
     mergeSort(v,n);
     printArrayi(v,n);
-
+    printf("\nSe ci sara' un errore verra' visualizzato con la sua riga del codice e il file. Esempio: %s:%d",__FILE__,__LINE__);
     return 0;
 }
