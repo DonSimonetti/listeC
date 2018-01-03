@@ -62,4 +62,13 @@ void printArrayf(float * v, int n)
     }
 }
 
+void printArrayi(int * v, int n)
+{
+    int i;
+    for(i=0;i<n;i++)
+    {
+        printf("\n%d",v[i]);
+    }
+}
+
 #endif //LISTEC_SCUTILS_H

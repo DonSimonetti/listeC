@@ -20,16 +20,16 @@ int main()
 
     printf("\nordinamento vettore di float..");
     printf("\n");
-    float * v;
+    int * v;
     int n=10;
-    v=(float*)malloc(n* sizeof(float));
+    v=(int*)malloc(n* sizeof(int));
     printf("\n%p -> v\n",v);
-    generateRandomVectorf(v,n);
-    printArrayf(v,n);
+    generateRandomVectori(v,n);
+    printArrayi(v,n);
 
     printf("\nvettore ordinato:");
-    selectionSort(v,n);
-    printArrayf(v,n);
+    mergeSort(v,n);
+    printArrayi(v,n);
 
     return 0;
 }

@@ -43,18 +43,31 @@ void bubbleSort(float * v, int n)//confronto ogni elemento col suo successivo, s
     bubbleSort(v,n-1);
 }
 //da qui in poi uso valori int per semplicità
-void merge(int * v, int n, int n1, int * tmp)
+void merge(int * v, int n, int n1, int * tmp2)
 {
-    int l,r;
-    for(l=0;l<n;l++)
-        tmp[l]=v[l];
+    int l;
+    for(l=0;l<n1;l++)
+        tmp2[l]=v[l];
+    int i,r;
     l=0;
     r=0;
-    do
+    for(i=0,l=0,r=0;i<n && l<n1 && r<n-n1;i++)
     {
-
+        if(tmp2[l]>v[n1+r])
+        {
+            v[i]=v[n1+r];
+            r++;
+        }
+        else
+        {
+            v[i]=tmp2[l];
+            l++;
+        }
     }
-    while(l<r);
+    for(;l<n1;l++)
+    {
+        v[l+r]=tmp2[l];
+    }
 }
 
 void _mergeSort(int * v, int n, int * tmp)
@@ -62,7 +75,7 @@ void _mergeSort(int * v, int n, int * tmp)
     if(n>2)
     {
         _mergeSort(v,n/2,tmp);//semivettore sinistro
-        _mergeSort(&(v[n/2]),n/2,tmp);//semivettore destro
+        _mergeSort(&(v[n/2]),n-n/2,&(tmp[n/2]));//semivettore destro
         merge(v,n,n/2,tmp);
     }
     else if(n==2)
