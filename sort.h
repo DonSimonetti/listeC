@@ -43,7 +43,7 @@ void bubbleSort(float * v, int n)//confronto ogni elemento col suo successivo, s
     bubbleSort(v,n-1);
 }
 //da qui in poi uso valori int per semplicità
-void merge(int * v, int n, int n1, int * tmp2)
+void merge(int * v, int n, int n1, int * tmp2)//Completato
 {
     int l;
     for(l=0;l<n1;l++)
