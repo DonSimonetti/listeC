@@ -94,6 +94,35 @@ bool mergeSort(int * v, int n)
     return true;
 }
 
-bool quickSort();
+bool quickSort(int * v, int n)
+{
+    if(n>0)
+    {
+        q=qsPartition(v,n);
+        quickSort(v,q-1);
+        quickSort(&(v[q]),n-q);
+    }
+}
+
+int qsPartition(int * v,int n)
+{
+    int pivot=v[0];
+    int l=0;
+    int r=n;
+
+    while(l<r)
+    {
+        while(r>l && v[r]>pivot)
+            r--;
+        if(r!=l)
+        {
+            while(l<r && v[l]<=pivot)
+                l++;
+            swapi(&(v[l]),&(v[r]));
+        }
+    }
+    swapi(&(v[0]),&(v[l]));
+    return l+1;
+}
 
 #endif //LISTEC_SORT_H
