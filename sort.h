@@ -1,5 +1,5 @@
 //
-// Created by matts on 30/12/2017.
+// Created by matteo.simonetti1@stud.unifi.it on 30/12/2017.
 //
 
 #ifndef LISTEC_SORT_H

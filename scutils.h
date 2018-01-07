@@ -1,5 +1,5 @@
 //
-// Created by matts on 28/12/2017.
+// Created by matteo.simonetti1@stud.unifi.it on 28/12/2017.
 //
 
 #ifndef LISTEC_SCUTILS_H

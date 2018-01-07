@@ -1,5 +1,5 @@
 //
-// Created by Matteo Simonetti on 28/12/17.
+// Created by matteo.simonetti1@stud.unifi.it on 28/12/17.
 //
 
 #ifndef LISTEC_SEQLIST_H
