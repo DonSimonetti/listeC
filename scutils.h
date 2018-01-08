@@ -10,7 +10,7 @@
 #include <math.h>
 #include <float.h>
 
-bool isequal(float a,float b)
+bool isEqual(float a,float b)
 {
     float diff, max;
     diff = fabs(a-b);

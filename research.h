@@ -24,4 +24,16 @@ bool binSearch(float * v, int n, float target)
     }
 }
 
+bool search(float * v, int n, float target)
+{
+    int i;
+    bool found=false;
+    for(i=0;i<n && !found;i++)
+    {
+        if(isEqual(v[i],target))
+            found=true;
+    }
+    return found;
+}
+
 #endif //LISTEC_RESEARCH_H
