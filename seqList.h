@@ -64,6 +64,55 @@ bool seqList_sufInsert(struct seqList * list, float val)
     return true;
 }
 
+/*bool seqList_ordInsert(struct seqList * list, float val) //versione ottimizzata: da finire
+{
+    if(list->head==(list->tail+1)%list->size)//lista piena
+        return false;
+    int i;
+    bool flag=false;
+    for(i=list->head;i!=list->tail && !flag;i=(i+1)%list->size)
+    {
+        if(val>list->buffer[i])
+        flag=true;
+    }
+    if((i-list->head)%list->size < list->size/2)
+    {
+        int j;
+        if(!seqList_preInsert(list,list->buffer[list->head]))
+            return false;
+        for(j=list->head;j!=(i-1+list->size)%list->size;i=(i+1)%list->size)
+        {
+            list->buffer[j]=list->buffer[(j+1)%list->size];
+        }
+        list->buffer[i]=val;
+    }
+    else
+    {
+
+    }
+}*/
+
+bool seqList_ordInsert( struct list * ptr, int value)//By Prof. Berretti
+{
+    int position;
+    if( ptr->head != (ptr->tail+1)%ptr->size ) // lista non piena
+    {
+
+        for( position = ptr->head; position!=ptr->tail && ptr->buffer[position]<value; )
+            position = ( position + 1)%ptr->size;
+
+        int i;
+        for( i=ptr->tail; i!=position; i=(i-1+ptr->size)%ptr->size )
+            ptr->buffer[i] = ptr->buffer[(i-1+ptr->size)%ptr->size];
+
+        ptr->buffer[position] = value;
+        ptr->tail = (ptr->tail+1)%ptr->size;
+        return true;
+    }
+    else
+        return false;
+}
+
 void seqList_visit(struct seqList * list)
 {
     int i;

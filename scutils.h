@@ -10,9 +10,14 @@
 #include <math.h>
 #include <float.h>
 
-bool isEqual(float a, float b)
+bool isequal(float a,float b)
 {
-    return fabsf(a-b)<FLT_EPSILON;
+    float diff, max;
+    diff = fabs(a-b);
+    a = fabs(a);
+    b = fabs(b);
+    max = a > b ? a : b;
+    return ( diff < FLT_EPSILON*max );
 }
 
 void swapf(float * a, float * b)
