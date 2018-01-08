@@ -31,14 +31,10 @@ void bubbleSort(float * v, int n)//confronto ogni elemento col suo successivo, s
     if(n==1)
         return;
     int i;
-    bool swap_found;
     for(i=0;i<n-1;i++)
     {
         if(v[i]>v[i+1])
-        {
             swapf(&(v[i]), &(v[i + 1]));
-            swap_found = true;
-        }
     }
     bubbleSort(v,n-1);
 }
