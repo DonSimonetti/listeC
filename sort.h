@@ -1,5 +1,5 @@
 //
-// Created by matts on 30/12/2017.
+// Created by matteo.simonetti1@stud.unifi.it on 30/12/2017.
 //
 
 #ifndef LISTEC_SORT_H
@@ -94,16 +94,6 @@ bool mergeSort(int * v, int n)
     return true;
 }
 
-bool quickSort(int * v, int n)
-{
-    if(n>0)
-    {
-        q=qsPartition(v,n);
-        quickSort(v,q-1);
-        quickSort(&(v[q]),n-q);
-    }
-}
-
 int qsPartition(int * v,int n)
 {
     int pivot=v[0];
@@ -124,5 +114,17 @@ int qsPartition(int * v,int n)
     swapi(&(v[0]),&(v[l]));
     return l+1;
 }
+
+void quickSort(int * v, int n)
+{
+    if(n>0)
+    {
+        int q=qsPartition(v,n);
+        quickSort(v,q-1);
+        quickSort(&(v[q]),n-q);
+    }
+}
+
+
 
 #endif //LISTEC_SORT_H
