@@ -1,20 +1,20 @@
 //
 // Created by matts on 29/12/2017.
 //
-#define NOMEALGORITMO "nomealgorimo"
+#define NOMEALGORITMO "removeFib"
 #include <stdio.h>
 #include "scutils.h"
-#include <examList.h>
+#include "examList.h"
 
-void generaLista(int size);
-void creaLista(int size);
+void generaLista(struct eList ** list, int size);
+void creaLista(struct eList ** list);
 
 int main()
 {
     printf("Bisogna creare una lista: scegli un opzione digitando il numero seguito da INVIO:\n");
     printf("1) La lista verra' generata automaticamente a caso\n2) La lista verra' creata manualmente\n");
 
-    short opzione;
+    int opzione;
     do {
         scanf("%d", &opzione);
         if (!(opzione==1 || opzione==2))
@@ -35,14 +35,16 @@ int main()
 
     printf("\nLa grandezza della lista sara' %d",size);
 
+    struct eList * lista;
+
     switch (opzione)
     {
         case 1:{
-            generaLista(size);
+            generaLista(&lista,size);
             break;
         }
         case 2:{
-            creaLista(size);
+            creaLista(&lista);
             break;
         }
     }
@@ -51,15 +53,40 @@ int main()
     return 0;
 }
 
-void generaLista(int size)
+void generaLista(struct eList ** list, int size)
 {
     printf("\nGenerazione della lista in corso..");
+    *list=NULL;
     /*ROBE*/
-    printf(" Lista generata con successo");
+    printf(" Lista generata con successo -> %p",*list);
 }
 
-void creaLista(int size)
+void creaLista(struct eList ** list)
 {
+    int size,i;
+    do
+    {
+        printf("\nDigitare il numero di elementi da aggiungere nella lista");
+        i=scanf("%d",&size);
+        if(i<=0 || size<=0)
+            printf("\nHai digitato un valore non valido. Il numero di elementi deve essere superiore di 0 (size: %d , res: %d) [%s:%d]",size,i,__FILE__,__LINE__);
 
+    }while(i<=0 || size<=0);
+    printf("\nLa lista avra' %d elementi\nDigitare ora gli elementi (non sono ammessi valori con la virgola)",size);
+    *list= NULL;
+    int val;
+    bool res=true;
+    for(i=0;i<size && res==true;i++)
+    {
+        printf("\nElemento %d:",i+1);
+        scanf("%d",&val);
+        res=eList_preInsert(list,val,i);
+    }
+    if(!res)
+    {
+        printf("\nQualcosa è andato storto durante l'immissione dei valori [%s:%d]",__FILE__,__LINE__);
+        return;
+    }
+    printf(" Lista generata con successo -> %p",*list);
 }
 

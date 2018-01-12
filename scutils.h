@@ -76,4 +76,22 @@ void printArrayi(int * v, int n)
     }
 }
 
+bool generateFibonacci(int ** v, int n)
+{
+    *v=(int *)malloc(sizeof(int)*n);
+    if(*v==NULL)
+    {
+        printf("ERRORE: Impossibile generare il vettore di Fibonacci(%d) (%s:%d)",n,__FILE__,__LINE__);
+        return false;
+    }
+    (*v)[0]=1;
+    (*v)[1]=2;
+    int i;
+    for(i=2;i<n;i++)
+    {
+        (*v)[i]=(*v)[i-1]+(*v)[i-2];
+    }
+    return true;
+}
+
 #endif //LISTEC_SCUTILS_H
