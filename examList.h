@@ -35,6 +35,14 @@ bool eList_preInsert(struct eList ** list, int val, int pos)
     return true;
 }
 
+bool eList_sufInsert(struct eList ** list, int val, int pos)
+{
+    //scorro la lista fino in fondo
+    while(*list!=NULL)
+        list=&((*list)->next);
+    return eList_preInsert(list,val,pos);
+}
+
 bool eList_preRemove(struct eList ** list, int * val)
 {
     if(*list==NULL)
@@ -47,6 +55,21 @@ bool eList_preRemove(struct eList ** list, int * val)
     *list=(*list)->next;
     free(anello);
     return true;
+}
+
+void eList_print(struct eList * list)
+{
+    printf("\nStampa della lista (%p)",list);
+    if(list==NULL)
+    {
+        printf("\nQuesta lista è vuota");
+        return;
+    }
+    while(list!=NULL)
+    {
+        printf("\nVal: %d , in posizione %d",list->value,list->pos);
+        list=list->next;
+    }
 }
 
 #endif //LISTEC_EXAMLIST_H

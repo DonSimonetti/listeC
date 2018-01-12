@@ -6,8 +6,8 @@
 #include "scutils.h"
 #include "examList.h"
 
-void generaLista(struct eList ** list, int size);
-void creaLista(struct eList ** list);
+bool generaLista(struct eList ** list, int size);
+bool creaLista(struct eList ** list, int size);
 
 int main()
 {
@@ -36,57 +36,78 @@ int main()
     printf("\nLa grandezza della lista sara' %d",size);
 
     struct eList * lista;
+    bool res;
 
     switch (opzione)
     {
         case 1:{
-            generaLista(&lista,size);
+            res=generaLista(&lista,size);
             break;
         }
         case 2:{
-            creaLista(&lista);
+            res=creaLista(&lista,size);
             break;
         }
     }
 
-    printf("\nOra verra' applicato il seguente algoritmo alla lista: "NOMEALGORITMO);
+    if(res)
+    {
+        eList_print(lista);
+
+        printf("\nOra verra' applicato il seguente algoritmo alla lista: "NOMEALGORITMO);
+
+        int * fib;
+        generateFibonacci(&fib,size);
+    }
+    else
+        printf("\nERRORE: La creazione/generazione della lista è terminata senza successo");
+
+
+
+
+
+
+    free(lista);
     return 0;
 }
 
-void generaLista(struct eList ** list, int size)
+bool generaLista(struct eList ** list, int size)
 {
     printf("\nGenerazione della lista in corso..");
-    *list=NULL;
-    /*ROBE*/
+    eList_init(list);
+    int i;
+    bool res= true;
+
+    for(i=0;i<size && res==true;i++)
+        res=eList_sufInsert(list,rand()%200,i+1);
+
+    if(!res)
+    {
+        printf("\nQualcosa è andato storto durante la generazione dei valori [%s:%d]",__FILE__,__LINE__);
+        return false;
+    }
     printf(" Lista generata con successo -> %p",*list);
+    return true;
 }
 
-void creaLista(struct eList ** list)
+bool creaLista(struct eList ** list, int size)
 {
-    int size,i;
-    do
-    {
-        printf("\nDigitare il numero di elementi da aggiungere nella lista");
-        i=scanf("%d",&size);
-        if(i<=0 || size<=0)
-            printf("\nHai digitato un valore non valido. Il numero di elementi deve essere superiore di 0 (size: %d , res: %d) [%s:%d]",size,i,__FILE__,__LINE__);
-
-    }while(i<=0 || size<=0);
-    printf("\nLa lista avra' %d elementi\nDigitare ora gli elementi (non sono ammessi valori con la virgola)",size);
-    *list= NULL;
-    int val;
+    printf("\nCreazione della lista:\nDigitare ora gli elementi (non sono ammessi valori con la virgola)");
+    eList_init(list);
+    int val,i;
     bool res=true;
     for(i=0;i<size && res==true;i++)
     {
         printf("\nElemento %d:",i+1);
         scanf("%d",&val);
-        res=eList_preInsert(list,val,i);
+        res=eList_sufInsert(list,val,i+1);
     }
     if(!res)
     {
         printf("\nQualcosa è andato storto durante l'immissione dei valori [%s:%d]",__FILE__,__LINE__);
-        return;
+        return false;
     }
-    printf(" Lista generata con successo -> %p",*list);
+    printf(" Lista creata con successo -> %p",*list);
+    return true;
 }
 
