@@ -7,6 +7,7 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 struct indRecord
 {
@@ -32,5 +33,30 @@ void indList_init(struct indList * list, int size)
     for(i=0;i<size;i++)
         list->buffer[i].next=i+1;
 }
+
+void indList_preInsert(struct indList * list, float val)
+{
+    if(list->free==list->size)
+    {
+        printf("lista piena");
+        return;
+    }
+    int oldFree=list->free;
+    list->free=((list->buffer)[list->free]).next;
+    list->buffer[oldFree].value=val;
+    list->buffer[oldFree].next=list->first;
+    list->first=oldFree;
+}
+
+/*void indList_sufInsert(struct indList * list, float val)
+{
+    if(list->free==list->size)
+    {
+        printf("lista piena");
+        return;
+    }
+    in
+}*/
+
 
 #endif //LISTEC_INDEXLIST_H

@@ -92,7 +92,7 @@ bool seqList_sufInsert(struct seqList * list, float val)
     }
 }*/
 
-bool seqList_ordInsert( struct list * ptr, int value)//By Prof. Berretti
+/*bool seqList_ordInsert( struct list * ptr, float value)//By Prof. Berretti
 {
     int position;
     if( ptr->head != (ptr->tail+1)%ptr->size ) // lista non piena
@@ -111,7 +111,7 @@ bool seqList_ordInsert( struct list * ptr, int value)//By Prof. Berretti
     }
     else
         return false;
-}
+}*/
 
 void seqList_visit(struct seqList * list)
 {

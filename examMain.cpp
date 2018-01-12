@@ -2,7 +2,9 @@
 // Created by matts on 29/12/2017.
 //
 #define NOMEALGORITMO "nomealgorimo"
-#include "stdio.h"
+#include <stdio.h>
+#include "scutils.h"
+#include <examList.h>
 
 void generaLista(int size);
 void creaLista(int size);

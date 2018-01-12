@@ -61,7 +61,7 @@ void pList_preInsert(struct pList ** list, float val)
     struct pList * anello=(struct pList *)malloc(sizeof(struct pList));
     if(anello==NULL)
     {
-        printf("ERRORE: memoria insufficiente");
+        printf("ERRORE: memoria insufficiente [%d]",__LINE__);
         return;
     }
     anello->value=val;
@@ -70,11 +70,32 @@ void pList_preInsert(struct pList ** list, float val)
     *list=anello;
 }
 
+bool pList_preRemove(struct pList ** list, float * val)
+{
+    if(*list!=NULL)
+    {
+        *val=(*list)->value;
+
+        pList * oldFirst=*list;
+        *list=(*list)->next;
+        free(oldFirst);
+        return true;
+    }
+    return false;
+}
+
+bool pList_sufRempve(struct pList ** list, float * val)
+{
+    while(*list!=NULL)
+        list=&((*list)->next);
+    return pList_preRemove(list,val);
+}
+
 void pList_sufInsert(struct pList ** list, float val)
 {
     //scorro la lista fino in fondo
     while(*list!=NULL)
-        list=&(*list)->next;
+        list=&((*list)->next);
     pList_preInsert(list,val);
 }
 

@@ -8,7 +8,7 @@
 #include <stdbool.h>
 #include "scutils.h"
 
-void selectionSort(float * v, int n)//Si trova il massimo e si fa lo swap
+void selectionSort(float * v, int n)//Si trova il massimo e lo porto in fondo
 {
     if(n>0)
     {
