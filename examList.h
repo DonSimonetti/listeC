@@ -72,4 +72,15 @@ void eList_print(struct eList * list)
     }
 }
 
+int eList_size(struct eList * list)
+{
+    int i=0;
+    while(list!=NULL)
+    {
+        i++;
+        list=list->next;
+    }
+    return i;
+}
+
 #endif //LISTEC_EXAMLIST_H

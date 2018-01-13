@@ -8,6 +8,7 @@
 
 bool generaLista(struct eList ** list, int size);
 bool creaLista(struct eList ** list, int size);
+bool removeFib(struct eList ** l, int ** v);
 
 int main()
 {
@@ -56,8 +57,9 @@ int main()
 
         printf("\nOra verra' applicato il seguente algoritmo alla lista: "NOMEALGORITMO);
 
-        int * fib;
-        generateFibonacci(&fib,size);
+        int * v;
+
+        removeFib(&lista,&v);
     }
     else
         printf("\nERRORE: La creazione/generazione della lista è terminata senza successo");
@@ -104,10 +106,26 @@ bool creaLista(struct eList ** list, int size)
     }
     if(!res)
     {
-        printf("\nQualcosa è andato storto durante l'immissione dei valori [%s:%d]",__FILE__,__LINE__);
+        printf("\nQualcosa e' andato storto durante l'immissione dei valori [%s:%d]",__FILE__,__LINE__);
         return false;
     }
     printf(" Lista creata con successo -> %p",*list);
+    return true;
+}
+
+bool removeFib(struct eList ** l, int ** v)
+{
+    int size=eList_size(*l);
+    int * fib;
+    if(!generateFibonacci(&fib,size))
+        return false;
+
+    *v=(int *)malloc(size* sizeof(int));
+    if(*v==NULL)
+    {
+        printf("ERRORE: Impossibile allocare memoria [%s:%d]",__FILE__,__LINE__);
+        return false;
+    }
     return true;
 }
 
