@@ -55,11 +55,23 @@ int main()
     {
         eList_print(lista);
 
-        printf("\nOra verra' applicato il seguente algoritmo alla lista: "NOMEALGORITMO);
+        printf("\n");
 
-        int * v;
+        printf("\nOra verra' applicato il seguente algoritmo alla lista: removeFib");
 
-        removeFib(&lista,&v);
+        int * oldElems;
+
+        if(!removeFib(&lista,&oldElems))
+        {
+            printf("\nERRORE: Qualcosa è andato storto nell'algoritmo [%s:%d]",__FILE__,__LINE__);
+            return 1;
+        }
+        printf("\nStampa della lista dopo removeFib:");
+        eList_print(lista);
+
+        printArrayi(oldElems,size);
+
+        free(oldElems);
     }
     else
         printf("\nERRORE: La creazione/generazione della lista è terminata senza successo");
@@ -126,6 +138,26 @@ bool removeFib(struct eList ** l, int ** v)
         printf("ERRORE: Impossibile allocare memoria [%s:%d]",__FILE__,__LINE__);
         return false;
     }
+
+    int i=0;
+    struct eList ** iL;
+    iL=l;
+    //TODO fix this part from here
+    while((*iL)!=NULL)//scorro la lista
+    {
+        //if(iSearch(*v,size,(*l)->pos))
+        if((*iL)->pos == (*v)[i])
+        {
+            eList_preRemove(iL,&((*v)[i]));
+            i++;
+        }
+        iL=&((*iL)->next);
+    }
+    //to here
+    printArrayi(*v,i+1);
+    revert(*v,i+1);
+    printf("\nrevert");
+    printArrayi(*v,i+1);
     return true;
 }
 

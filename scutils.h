@@ -94,4 +94,25 @@ bool generateFibonacci(int ** v, int n)
     return true;
 }
 
+bool iSearch(int * v, int n, int val)
+{
+    int i;
+    bool found=false;
+    for(i=0;i<n && !found;i++)
+    {
+        if(v[i]==val)
+            found=true;
+    }
+    return found;
+}
+
+void revert(int * v, int n)
+{
+    int i;
+    for(i=0;i<n/2;i++)
+    {
+        swapi(&(v[i]),&(v[n-i-1]));
+    }
+}
+
 #endif //LISTEC_SCUTILS_H
