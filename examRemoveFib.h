@@ -31,11 +31,10 @@ bool removeFib(struct eList ** l, int ** v)
     int i=0;
     struct eList ** iL;
     iL=l;
-    //TODO fix this part from here
+    //FIXED
     int oldVal;
-    while((*iL)!=NULL)//scorro la lista
+    while((*iL)!=NULL && i<size)
     {
-        //il modo per ciclare e accedere agli elementi della lista con il puntatore temporaneto iL è corretto
         //if(iSearch(*v,size,(*l)->pos)) //lascia stare, è meglio...
         if((*iL)->pos == fib[i])//il problema è qui dentro
         {
@@ -47,9 +46,6 @@ bool removeFib(struct eList ** l, int ** v)
             iL=&((*iL)->next);
     }
     //to here
-    revert(*v,size);
-    printf("\nrevert");
-    printArrayi(*v,size);
     return true;
 }
 

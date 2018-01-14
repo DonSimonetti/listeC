@@ -3,6 +3,7 @@
 //
 #define NOMEALGORITMO "removeFib"
 #include <stdio.h>
+#include <time.h>
 #include "scutils.h"
 #include "examList.h"
 #include "examRemoveFib.h"
@@ -13,11 +14,14 @@ bool removeFib(struct eList ** l, int ** v);
 
 int main()
 {
+    unsigned int seed=time(NULL);
+    srand(seed/2);
     printf("Bisogna creare una lista: scegli un opzione digitando il numero seguito da INVIO:\n");
     printf("1) La lista verra' generata automaticamente a caso\n2) La lista verra' creata manualmente\n");
 
     int opzione;
-    do {
+    do
+    {
         scanf("%d", &opzione);
         if (!(opzione==1 || opzione==2))
             printf("ERRORE: L'opzione %d non e' valida. Digitare 1 o 2\n",opzione);
@@ -74,25 +78,22 @@ int main()
 
         printArrayi(oldElems,size);
 
+
+
         free(oldElems);
+        free(lista);
         printf("\nFINE");
     }
     else
         printf("\nERRORE: La creazione/generazione della lista è terminata senza successo");
-
-
-
-
-
-
-    free(lista);
     return 0;
 }
 
 bool generaLista(struct eList ** list, int size)
 {
     printf("\nGenerazione della lista in corso..");
-    eList_init(list);
+    //eList_init(list);
+    *list=NULL;//abbasso il costo computazionale
     int i;
     bool res= true;
 
