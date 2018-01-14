@@ -50,8 +50,8 @@ bool eList_preRemove(struct eList ** list, int * val)
         printf("ERRORE: E' stato passato un puntatore nullo [%s:%d]",__FILE__,__LINE__);
         return false;
     }
-    *val=(*list)->value;
     struct eList * anello=*list;
+    *val=anello->value;
     *list=(*list)->next;
     free(anello);
     return true;

@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "scutils.h"
 #include "examList.h"
+#include "examRemoveFib.h"
 
 bool generaLista(struct eList ** list, int size);
 bool creaLista(struct eList ** list, int size);
@@ -61,7 +62,9 @@ int main()
 
         int * oldElems;
 
-        if(!removeFib(&lista,&oldElems))
+        bool res=removeFib(&lista,&oldElems);
+
+        if(!res)
         {
             printf("\nERRORE: Qualcosa è andato storto nell'algoritmo [%s:%d]",__FILE__,__LINE__);
             return 1;
@@ -72,6 +75,7 @@ int main()
         printArrayi(oldElems,size);
 
         free(oldElems);
+        printf("\nFINE");
     }
     else
         printf("\nERRORE: La creazione/generazione della lista è terminata senza successo");
@@ -122,42 +126,6 @@ bool creaLista(struct eList ** list, int size)
         return false;
     }
     printf(" Lista creata con successo -> %p",*list);
-    return true;
-}
-
-bool removeFib(struct eList ** l, int ** v)
-{
-    int size=eList_size(*l);
-    int * fib;
-    if(!generateFibonacci(&fib,size))
-        return false;
-
-    *v=(int *)malloc(size* sizeof(int));
-    if(*v==NULL)
-    {
-        printf("ERRORE: Impossibile allocare memoria [%s:%d]",__FILE__,__LINE__);
-        return false;
-    }
-
-    int i=0;
-    struct eList ** iL;
-    iL=l;
-    //TODO fix this part from here
-    while((*iL)!=NULL)//scorro la lista
-    {
-        //if(iSearch(*v,size,(*l)->pos))
-        if((*iL)->pos == (*v)[i])
-        {
-            eList_preRemove(iL,&((*v)[i]));
-            i++;
-        }
-        iL=&((*iL)->next);
-    }
-    //to here
-    printArrayi(*v,i+1);
-    revert(*v,i+1);
-    printf("\nrevert");
-    printArrayi(*v,i+1);
     return true;
 }
 

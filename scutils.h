@@ -69,6 +69,7 @@ void printArrayf(float * v, int n)
 
 void printArrayi(int * v, int n)
 {
+    printf("\nStampa array %p di interi",v);
     int i;
     for(i=0;i<n;i++)
     {
@@ -113,6 +114,16 @@ void revert(int * v, int n)
     {
         swapi(&(v[i]),&(v[n-i-1]));
     }
+}
+
+void stack(int * v, int n, int val)
+{
+    int i;
+    for(i=n;i>0;i--)
+    {
+        v[i]=v[i-1];
+    }
+    v[0]=val;
 }
 
 #endif //LISTEC_SCUTILS_H
