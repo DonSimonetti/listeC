@@ -78,11 +78,9 @@ int main()
 
         printArrayi(oldElems,size);
 
-
-
         free(oldElems);
         free(lista);
-        printf("\nFINE");
+        printf("\nFINE\n");
     }
     else
         printf("\nERRORE: La creazione/generazione della lista è terminata senza successo");

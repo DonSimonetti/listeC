@@ -45,6 +45,16 @@ bool removeFib(struct eList ** l, int ** v)
         else
             iL=&((*iL)->next);
     }
+    //resize di v
+    /*int * newV;
+    newV=(int*)malloc(sizeof(int)*(i+1));
+    int j;
+    for(j=0;j<i+1;j++)
+    {
+        newV[j]=(*v)[j];
+    }
+    free(*v);
+    *v=newV;*/
     //to here
     return true;
 }
