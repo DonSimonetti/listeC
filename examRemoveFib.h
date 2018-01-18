@@ -47,9 +47,7 @@ bool removeFib(struct eList ** l, int ** v)
             iL=&((*iL)->next);
     }
     //to here
-    printArrayi(*v,size);
     revert(*v,i);
-    printArrayi(*v,size);
     return true;
 }
 
