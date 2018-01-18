@@ -39,23 +39,17 @@ bool removeFib(struct eList ** l, int ** v)
         if((*iL)->pos == fib[i])//il problema è qui dentro
         {
             eList_preRemove(iL,&oldVal);
-            stack(*v,size,oldVal);
+            (*v)[i]=oldVal;
+            //stack(*v,size,oldVal);//con questa funzione la complessità dell'intero algoritmo sarebbe stata quadratica
             i++;
         }
         else
             iL=&((*iL)->next);
     }
-    //resize di v
-    /*int * newV;
-    newV=(int*)malloc(sizeof(int)*(i+1));
-    int j;
-    for(j=0;j<i+1;j++)
-    {
-        newV[j]=(*v)[j];
-    }
-    free(*v);
-    *v=newV;*/
     //to here
+    printArrayi(*v,size);
+    revert(*v,i);
+    printArrayi(*v,size);
     return true;
 }
 
