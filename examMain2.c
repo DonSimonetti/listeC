@@ -113,28 +113,30 @@ bool generaLista(struct eList ** list, int size)
 
 bool creaLista(struct eList ** list)
 {
-    printf("\nCreazione della lista:\nDigitare ora gli elementi (non sono ammessi valori con la virgola)\nScrivere stop per terminare l'immissione di valori\n");
+    printf("\nCreazione della lista:\nDigitare \"add [valore]\" per aggiungere elementi (non sono ammessi valori con la virgola)\nScrivere \"stop\" per terminare l'immissione di valori\n");
     eList_init(list);
     int i,val;
     bool res=true;
     bool stop=false;
     i=0;
-    char out[16];
-    while(res==true && !stop)
+    char cmd[16];
+    do
     {
-        printf("\nElemento %d:",i+1);
-        scanf("%s",out);
-        /*if(!strcmp())
-        sscanf(out,"%s",&val);
-        res=eList_sufInsert(list,,i+1);*/
-    }
+        printf("\n");
+        scanf("%s %d",cmd,&val);
+        if(!strcmp(cmd,"stop"))
+            stop=true;
+        else if(!strcmp(cmd,"add"))
+        {
+            i++;
+            printf("Elemento %d: %d",i,val);
+            res = eList_sufInsert(list, val, i);
+        }
+        else
+            printf("ERRORE: comando non riconosciuto [%s:%d]\n",__FILE__,__LINE__);
 
-    /*for(i=0;i<size && res==true;i++)
-    {
-        printf("\nElemento %d:",i+1);
-        scanf("%d",&val);
-        res=eList_sufInsert(list,val,i+1);
-    }*/
+    }while(res==true && !stop);
+
     if(!res)
     {
         printf("\nQualcosa e' andato storto durante l'immissione dei valori [%s:%d]",__FILE__,__LINE__);

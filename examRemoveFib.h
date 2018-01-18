@@ -33,7 +33,7 @@ bool removeFib(struct eList ** l, int ** v)
     int oldVal;
     while((*iL)!=NULL && i<size)
     {
-        //if(iSearch(*v,size,(*l)->pos)) //lascia stare, è meglio...
+        //if(iSearch(fib,size,(*iL)->pos)) //lascia stare, è meglio...
         if((*iL)->pos == fib[i])//il problema è qui dentro (era)
         {
             eList_preRemove(iL,&oldVal);
