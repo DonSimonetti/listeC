@@ -1,6 +1,7 @@
 //
 // Created by matts on 29/12/2017.
 //
+
 #include <stdio.h>
 #include <time.h>
 #include "scutils.h"
@@ -34,7 +35,7 @@ int main()
         printf("\n");
         scanf("%d",&size);
         if(size<=0)
-            printf("\nERRORE: La grandezza della lista non e' valida. Digitare un numero strettamente maggiore di 0");
+            printf("\nERRORE: La grandezza della lista non e' valida. Digitare un numero maggiore di 0");
     }while(size<=0);
 
     printf("\nLa grandezza della lista sara' %d",size);
@@ -81,7 +82,7 @@ int main()
         printf("\nFINE\n");
     }
     else
-        printf("\nERRORE: La creazione/generazione della lista è terminata senza successo");
+        printf("\nERRORE: La creazione/generazione della lista è terminata con un errore");
     return 0;
 }
 
@@ -89,7 +90,7 @@ bool generaLista(struct eList ** list, int size)
 {
     printf("\nGenerazione della lista in corso..");
     //eList_init(list);
-    *list=NULL;//abbasso il costo computazionale
+    *list=NULL;//evito la chiamata alla funzione, abbasso il costo computazionale
     int i;
     bool res= true;
 

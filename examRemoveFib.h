@@ -14,12 +14,10 @@ bool removeFib(struct eList ** l, int ** v)
 {
     printf("\n(%p)removeFib(%p,%p)",&removeFib,l,v);
     int size=eList_size(*l);
-    //Generazione vettore di Fibonacci
+
     int * fib;
     if(!generateFibonacci(&fib,size))
         return false;
-    //printArrayi(fib,size);
-    //Fine generazione vettore di Fibonacci
 
     *v=(int *)malloc(size* sizeof(int));
     if(*v==NULL)
@@ -36,7 +34,7 @@ bool removeFib(struct eList ** l, int ** v)
     while((*iL)!=NULL && i<size)
     {
         //if(iSearch(*v,size,(*l)->pos)) //lascia stare, è meglio...
-        if((*iL)->pos == fib[i])//il problema è qui dentro
+        if((*iL)->pos == fib[i])//il problema è qui dentro (era)
         {
             eList_preRemove(iL,&oldVal);
             (*v)[i]=oldVal;
@@ -48,6 +46,22 @@ bool removeFib(struct eList ** l, int ** v)
     }
     //to here
     revert(*v,i);
+    //E' possibile ridimensionare il vettore v
+    /*int * tmp;
+    tmp=(int*)malloc(sizeof(int)*(i));
+    if(tmp==NULL)
+    {
+       printf("ERRORE: Impossibile allocare memoria [%s:%d]",__FILE__,__LINE__);
+       return false;
+    }
+    int j;
+
+    for(j=0;j<i;j++)
+       tmp[j]=(*v)[j];
+
+    free(*v);
+    *v=tmp;
+    */
     return true;
 }
 
