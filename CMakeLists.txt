@@ -4,5 +4,5 @@ project(listeC)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES examMain.cpp examList.h scutils.h examRemoveFib.h)
+set(SOURCE_FILES examMain.cpp examList.h scutils.h examRemoveFib.h examMain2.c)
 add_executable(listeC ${SOURCE_FILES})

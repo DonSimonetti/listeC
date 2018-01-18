@@ -1,14 +1,16 @@
 //
-// Created by matts on 29/12/2017.
+// Created by Matteo Simonetti on 18/01/18.
 //
+
 #include <stdio.h>
 #include <time.h>
+#include <memory.h>
 #include "scutils.h"
 #include "examList.h"
 #include "examRemoveFib.h"
 
 bool generaLista(struct eList ** list, int size);
-bool creaLista(struct eList ** list, int size);
+bool creaLista(struct eList ** list);
 
 int main()
 {
@@ -27,17 +29,20 @@ int main()
     while (!(opzione==1 || opzione==2));
 
     printf("\nHai selezionato l'opzione %d",opzione);
-    printf("\nSpecificare ora la grandezza della lista");
-
     int size;
-    do{
-        printf("\n");
-        scanf("%d",&size);
-        if(size<=0)
-            printf("\nERRORE: La grandezza della lista non e' valida. Digitare un numero strettamente maggiore di 0");
-    }while(size<=0);
+    if(opzione==1)
+    {
+        printf("\nSpecificare ora la grandezza della lista");
 
-    printf("\nLa grandezza della lista sara' %d",size);
+        do
+        {
+            printf("\n");
+            scanf("%d", &size);
+            if (size <= 0)
+                printf("\nERRORE: La grandezza della lista non e' valida. Digitare un numero strettamente maggiore di 0");
+        } while (size <= 0);
+        printf("\nLa grandezza della lista sara' %d",size);
+    }
 
     struct eList * lista;
     bool res;
@@ -49,7 +54,8 @@ int main()
             break;
         }
         case 2:{
-            res=creaLista(&lista,size);
+            res=creaLista(&lista);
+            size=eList_size(lista);
             break;
         }
     }
@@ -105,18 +111,30 @@ bool generaLista(struct eList ** list, int size)
     return true;
 }
 
-bool creaLista(struct eList ** list, int size)
+bool creaLista(struct eList ** list)
 {
-    printf("\nCreazione della lista:\nDigitare ora gli elementi (non sono ammessi valori con la virgola)");
+    printf("\nCreazione della lista:\nDigitare ora gli elementi (non sono ammessi valori con la virgola)\nScrivere stop per terminare l'immissione di valori\n");
     eList_init(list);
-    int val,i;
+    int i,val;
     bool res=true;
-    for(i=0;i<size && res==true;i++)
+    bool stop=false;
+    i=0;
+    char out[16];
+    while(res==true && !stop)
+    {
+        printf("\nElemento %d:",i+1);
+        scanf("%s",out);
+        /*if(!strcmp())
+        sscanf(out,"%s",&val);
+        res=eList_sufInsert(list,,i+1);*/
+    }
+
+    /*for(i=0;i<size && res==true;i++)
     {
         printf("\nElemento %d:",i+1);
         scanf("%d",&val);
         res=eList_sufInsert(list,val,i+1);
-    }
+    }*/
     if(!res)
     {
         printf("\nQualcosa e' andato storto durante l'immissione dei valori [%s:%d]",__FILE__,__LINE__);
@@ -125,4 +143,3 @@ bool creaLista(struct eList ** list, int size)
     printf(" Lista creata con successo -> %p",*list);
     return true;
 }
-
